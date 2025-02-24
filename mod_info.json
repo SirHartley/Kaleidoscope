@@ -6,5 +6,10 @@
     "description": "Adds visual variety to the planets of the sector without introducing new types.",
     "gameVersion": "0.97a",
     "jars":["jars/kaleidoscope.jar"],
-    "modPlugin":"kaleidoscope.plugins.ModPlugin"
+    "modPlugin":"kaleidoscope.plugins.ModPlugin",
+    "dependencies": [
+        {
+            "id": "lunalib",
+            "name": "LunaLib",
+        },
 }
