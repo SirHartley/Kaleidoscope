@@ -3,7 +3,7 @@
     "name": "Kaleidoscope",
     "author": "SirHartley & Pixel Rice Bowl",
     "version": "1.0.a",
-    "description": "Adds visual variety to the planets of the sector without introducing new types.",
+    "description": "Adds visual variety to the planets of the sector.",
     "gameVersion": "0.97a",
     "jars":["jars/kaleidoscope.jar"],
     "modPlugin":"kaleidoscope.plugins.ModPlugin",
@@ -11,5 +11,6 @@
         {
             "id": "lunalib",
             "name": "LunaLib",
-        },
+        }
+    ],
 }

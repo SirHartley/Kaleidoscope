@@ -3,11 +3,14 @@ package kaleidoscope.plugins;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
-import com.fs.starfarer.campaign.rules.Memory;
 import kaleidoscope.ids.Ids;
-import kaleidoscope.listener.CargoStackAvailabilityIconProvider;
 
 public class ModPlugin extends BaseModPlugin {
+
+    public static void log(String Text) {
+        if (Global.getSettings().isDevMode()) Global.getLogger(ModPlugin.class).info(Text);
+    }
+
     @Override
     public void onGameLoad(boolean newGame) {
         super.onGameLoad(newGame);

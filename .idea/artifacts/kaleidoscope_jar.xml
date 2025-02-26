@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="kaleidoscope:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/kaleidoscope_jar</output-path>
+    <output-path>$PROJECT_DIR$/jars</output-path>
     <root id="archive" name="kaleidoscope.jar">
       <element id="module-output" name="Kaleidoscope" />
     </root>
