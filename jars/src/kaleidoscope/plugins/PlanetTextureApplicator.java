@@ -28,6 +28,13 @@ public class PlanetTextureApplicator {
 
             ModPlugin.log(p.getTypeId() + ";" + p.getTypeNameWithWorld() + ";" + p.getSpec().getTexture());
 
+            //get all planets w/ types (remove num on end if num)
+            //skip core
+            //tally total textures
+            //tally totals with this mod and assign chance based on total num of textures for equal distribution
+            //assign tex, name, desc
+
+
             PlanetSpecAPI spec = p.getSpec();
             PlanetSpec obfSpec = (PlanetSpec) spec;
             obfSpec.name = "Test";
