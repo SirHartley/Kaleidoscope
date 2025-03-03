@@ -2,8 +2,11 @@ package kaleidoscope.loading;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.InteractionDialogImageVisual;
+import com.fs.starfarer.api.campaign.PlanetAPI;
+import com.fs.starfarer.api.campaign.PlanetSpecAPI;
 import com.fs.starfarer.api.campaign.SectorAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
+import com.fs.starfarer.loading.specs.PlanetSpec;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,95 +14,44 @@ import java.util.List;
 
 public class ImageDataEntry {
     public int id;
-    public List<String> requiredTags;
-    public List<String> requiredExcludedTags;
-    public List<String> optionalTags;
-    public List<String> optionalExcludedTags;
-    public List<String> usedEntityIds;
-    public String planetId;
+    public List<String> conditionsToAdd;
+    public String imageName;
+    public String glowName;
+    public String targetPlanetType;
+    public String typename;
+    public String typeDesc;
 
-    public String faction;
-    public int weight;
-    public transient Boolean isLoaded;
+    int tally = 0;
 
-    public ImageDataEntry(int id, int weight, List<String> requiredTags, List<String> requiredExcludedTags, List<String> optionalTags, List<String> optionalExcludedTags, String faction, String planetId) {
+    public ImageDataEntry(int id, List<String> conditionsToAdd, String imageName, String glowName, String targetPlanetType, String typename, String typeDesc) {
         this.id = id;
-        this.weight = weight;
-        this.requiredTags = requiredTags;
-        this.requiredExcludedTags = requiredExcludedTags;
-        this.optionalTags = optionalTags;
-        this.optionalExcludedTags = optionalExcludedTags;
-
-        this.usedEntityIds = new ArrayList<>();
-        this.faction = faction;
-        this.planetId = planetId;
+        this.conditionsToAdd = conditionsToAdd;
+        this.imageName = imageName;
+        this.glowName = glowName;
+        this.targetPlanetType = targetPlanetType;
+        this.typename = typename;
+        this.typeDesc = typeDesc;
     }
 
-    public String getImagePath(){
-        return Settings.DEFAULT_IMAGE_PATH + "/" + id + ".png";
+    public boolean matches(PlanetAPI planet){
+        String type = planet.getTypeId();
+        if (Character.isDigit(type.charAt(type.length()-1))) type = type.substring(0, type.length() - 2);
+
+        return type.equals(targetPlanetType);
     }
 
-    public boolean isUsed(){
-        return !usedEntityIds.isEmpty();
-    }
+    public void applyToPlanet(PlanetAPI planet){
+        PlanetSpecAPI spec = planet.getSpec();
+        PlanetSpec obfSpec = (PlanetSpec) spec;
 
-    public void addToEntity(SectorEntityToken t){
-        String entityID = t.getId();
+        obfSpec.texture = imageName;
+        if (glowName != null && !glowName.isEmpty()) obfSpec.glowTexture = glowName;
+        if (typename != null && !typename.isEmpty()) obfSpec.name = typename;
+        if (typeDesc != null && !typeDesc.isEmpty()) obfSpec.descriptionId = typeDesc;
 
-        String path = getImagePath();
-        InteractionDialogImageVisual visual = new InteractionDialogImageVisual(path, 480, 300);
+        for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) planet.getMarket().addCondition(s);
 
-        t.setCustomInteractionDialogImageVisual(visual);
-        t.getMemoryWithoutUpdate().set(HAS_INTERACTION_IMAGE, id);
-        t.addTag(HAS_INTERACTION_IMAGE);
-
-        if (!usedEntityIds.contains(entityID)) usedEntityIds.add(entityID);
-
-        ImageDataMemory.getInstance().set(this.id, this);
-    }
-
-    public void addToOrbitalStation(SectorEntityToken t){
-        String path = getImagePath();
-        InteractionDialogImageVisual visual = new InteractionDialogImageVisual(path, 480, 300);
-
-        t.setCustomInteractionDialogImageVisual(visual);
-        t.getMemoryWithoutUpdate().set(ORBITAL_HAS_INTERACTION_IMAGE, id);
-        t.addTag(ORBITAL_HAS_INTERACTION_IMAGE);
-    }
-
-    public void removeFromEntity(SectorEntityToken t){
-        usedEntityIds.remove(t.getId());
-        t.setCustomInteractionDialogImageVisual(null);
-        t.getMemoryWithoutUpdate().unset(HAS_INTERACTION_IMAGE);
-        t.removeTag(HAS_INTERACTION_IMAGE);
-
-        ImageDataMemory.getInstance().set(this.id, this);
-    }
-
-    public void applyAllPlanets(){
-        SectorAPI sector = Global.getSector();
-        for (String s : usedEntityIds){
-            SectorEntityToken t = sector.getEntityById(s);
-
-            if (t != null && t.getMarket() != null && !t.getMarket().isPlanetConditionMarketOnly()) addToEntity(t);
-        }
-    }
-
-    public void load(){
-        if(isLoaded == null) Importer.loadImage(getImagePath());
-        isLoaded = true;
-    }
-
-    public void print(){
-        String[] r = requiredTags.toArray(new String[0]);
-        String[] re = requiredExcludedTags.toArray(new String[0]);
-        String[] o = optionalTags.toArray(new String[0]);
-        String[] oe = optionalExcludedTags.toArray(new String[0]);
-
-        ModPlugin.log.info("data " + id);
-        ModPlugin.log.info("required " + Arrays.toString(r));
-        ModPlugin.log.info("required excluded " + Arrays.toString(re));
-        ModPlugin.log.info("optional " + Arrays.toString(o));
-        ModPlugin.log.info("optional excluded " + Arrays.toString(oe));
+        planet.applySpecChanges();
+        tally++;
     }
 }

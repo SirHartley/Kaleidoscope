@@ -1,9 +1,7 @@
 package kaleidoscope.loading;
 
 import com.fs.starfarer.api.Global;
-import illustratedEntities.helper.Settings;
-import illustratedEntities.memory.ImageDataEntry;
-import illustratedEntities.plugins.ModPlugin;
+import kaleidoscope.plugins.ModPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,61 +14,43 @@ import java.util.Map;
 
 public class Importer {
 
-    public static Map<Integer, ImageDataEntry> loadImageData(){
-        Map<Integer, ImageDataEntry> dataMap = new HashMap<>();
+    public static List<ImageDataEntry> loadImageData(){
+        List<ImageDataEntry> dataMap = new ArrayList<>();
 
         try {
-            JSONArray config = Global.getSettings().getMergedSpreadsheetDataForMod("id", Settings.CSV_PATH, ModPlugin.MOD_ID);
+            JSONArray config = Global.getSettings().getMergedSpreadsheetDataForMod("id", ModPlugin.CSV_PATH, ModPlugin.MOD_ID);
             for (int i = 0; i < config.length(); i++) {
+
                 JSONObject row = config.getJSONObject(i);
                 int id = row.getInt("id");
-                String planetId = row.getString("planet_id").replaceAll("\\s", "");
-                String faction = row.getString("faction").replaceAll("\\s", "");
-                int weight = row.getString("weight").isEmpty() ? 0 : row.getInt("weight");
+                String imageName = row.getString("image_name").replaceAll("\\s", "");;
+                String glowName = row.getString("glow_name").replaceAll("\\s", "");;
+                String planetType = row.getString("planet_type").replaceAll("\\s", "");;
+                String typeName = row.getString("type_name");
+                String descId = row.getString("desc").replaceAll("\\s", "");;
 
-                List<String> requiredTags = new ArrayList<>();
-                List<String> requiredExcludedTags = new ArrayList<>();
-                List<String> optionalTags = new ArrayList<>();
-                List<String> optionalExcludedTags = new ArrayList<>();
+                List<String> conditionsToAdd = new ArrayList<>();
 
-                for (String s : row.getString("tags_required").split("\\s+")){
+                for (String s : row.getString("force_condition").split("\\s+")){
                     s = s.replaceAll("\\s", "");
                     if (s.length() < 3) continue;
-
-                    if (s.startsWith("!")) requiredExcludedTags.add(s.substring(1));
-                    else requiredTags.add(s);
+                    conditionsToAdd.add(s);
                 }
+                ImageDataEntry imageEntry = new ImageDataEntry(
+                        id,
+                        conditionsToAdd,
+                        imageName,
+                        glowName,
+                        planetType,
+                        typeName,
+                        descId);
 
-                for (String s : row.getString("tags_optional").split("\\s+")){
-                    s = s.replaceAll("\\s", "");
-                    if (s.length() < 3) continue;
-
-                    if (s.startsWith("!")) optionalExcludedTags.add(s.substring(1));
-                    else optionalTags.add(s);
-                }
-
-                ImageDataEntry imageEntry = new ImageDataEntry(id, weight, requiredTags, requiredExcludedTags, optionalTags, optionalExcludedTags, faction, planetId);
-                dataMap.put(id, imageEntry);
+                dataMap.add(imageEntry);
             }
         } catch (IOException | JSONException ex) {
-            ModPlugin.log.error("Could not find Illustrated.Entites image_data.csv, or something is wrong with the data format.", ex);
+            ModPlugin.log.error("Could not find Kaleidoscope planet_texture_data, or something is wrong with the data format.", ex);
         }
 
        return dataMap;
-    }
-
-    public static void unloadImage(String path){
-        ModPlugin.log.info("unloading image " + path);
-        Global.getSettings().unloadTexture(path);
-    }
-
-    public static void loadImage(String path) {
-
-        try {
-            ModPlugin.log.info("loading image " + path);
-            Global.getSettings().loadTexture(path);
-        } catch (IOException e){
-            ModPlugin.log.error("Could not find image " + path, e);
-        }
     }
 }
