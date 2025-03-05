@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.SectorAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.loading.specs.PlanetSpec;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ImageDataEntry {
     public String typename;
     public String typeDesc;
 
-    int tally = 0;
+    public int tally = 0;
 
     public ImageDataEntry(int id, List<String> conditionsToAdd, String imageName, String glowName, String targetPlanetType, String typename, String typeDesc) {
         this.id = id;
@@ -45,13 +46,19 @@ public class ImageDataEntry {
         PlanetSpec obfSpec = (PlanetSpec) spec;
 
         obfSpec.texture = imageName;
-        if (glowName != null && !glowName.isEmpty()) obfSpec.glowTexture = glowName;
+        if (glowName != null && !glowName.isEmpty()) {
+            if (obfSpec.glowTexture == null) {
+                obfSpec.setUseReverseLightForGlow(false);
+                obfSpec.setGlowColor(new Color(255,255,255,255));
+            }
+
+            obfSpec.glowTexture = glowName;
+        }
         if (typename != null && !typename.isEmpty()) obfSpec.name = typename;
         if (typeDesc != null && !typeDesc.isEmpty()) obfSpec.descriptionId = typeDesc;
 
         for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) planet.getMarket().addCondition(s);
 
         planet.applySpecChanges();
-        tally++;
     }
 }

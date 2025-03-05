@@ -56,10 +56,10 @@ id,image_name,glow_name,planet_type,force_condition,type_name,desc
 55,graphics/kaleidoscope/planets/lava03.jpg,graphics/kaleidoscope/planets/lava03_glow.png,lava,,,
 56,graphics/kaleidoscope/planets/lava04.jpg,graphics/kaleidoscope/planets/lava04_glow.png,lava,,,
 57,graphics/kaleidoscope/planets/lava05.jpg,graphics/kaleidoscope/planets/lava05_glow.png,lava,,,
-58,graphics/kaleidoscope/planets/liquidmetal01.jpg,,lava,rare_ore_ultrarich ore_ultrarich,Liquid Metal,kaleidoscope_liquid_metal
+58,graphics/kaleidoscope/planets/liquidmetal01.jpg,,rocky_metallic,rare_ore_ultrarich ore_ultrarich,Metal,kaleidoscope_liquid_metal
 59,graphics/kaleidoscope/planets/snow01.jpg,,frozen,,,
 60,graphics/kaleidoscope/planets/snow02.jpg,,frozen,,,
-61,graphics/kaleidoscope/planets/terran03.jpg,,water,,Archipelago,kaleidoscope_archipelago
+61,graphics/kaleidoscope/planets/terran03.jpg,,water,,Reef,kaleidoscope_archipelago
 62,graphics/kaleidoscope/planets/terran05.jpg,,terran,,,
 63,graphics/kaleidoscope/planets/terran06.jpg,,terran,,,
 64,graphics/kaleidoscope/planets/terran_boreal01.jpg,,terran,,Terran-Boreal,kaleidoscope_terran_boreal

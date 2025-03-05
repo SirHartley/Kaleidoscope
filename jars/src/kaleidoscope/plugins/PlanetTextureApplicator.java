@@ -4,6 +4,8 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.PlanetSpecAPI;
+import com.fs.starfarer.api.campaign.StarSystemAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import com.fs.starfarer.loading.specs.PlanetSpec;
@@ -30,7 +32,17 @@ public class PlanetTextureApplicator {
         entries = Importer.loadImageData();
 
         List<PlanetAPI> planetList = new ArrayList<>();
-        for (LocationAPI loc : Global.getSector().getAllLocations()) planetList.addAll(loc.getPlanets());
+        for (LocationAPI loc : Global.getSector().getAllLocations()) {
+            if (loc.getPlanets().isEmpty()
+                    || !Misc.getMarketsInLocation(loc).isEmpty()
+                    || loc.hasTag(Tags.SYSTEM_CUT_OFF_FROM_HYPER)
+                    || loc.isHyperspace()
+                    || loc.hasTag(Tags.THEME_HIDDEN)
+                    || loc.hasTag(Tags.THEME_SPECIAL)
+                    || loc.hasTag(Tags.SYSTEM_ABYSSAL)) continue;
+
+            planetList.addAll(loc.getPlanets());
+        }
 
         for (PlanetAPI p : planetList){
 
