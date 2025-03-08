@@ -58,6 +58,7 @@ public class ModPlugin extends BaseModPlugin {
             try {
                 Global.getSettings().loadTexture(e.imageName);
                 if (e.glowName != null && !e.glowName.isEmpty()) Global.getSettings().loadTexture(e.glowName);
+                if (e.cloudName != null && !e.cloudName.isEmpty()) Global.getSettings().loadTexture(e.cloudName);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -8,9 +8,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Importer {
 
@@ -23,11 +21,12 @@ public class Importer {
 
                 JSONObject row = config.getJSONObject(i);
                 int id = row.getInt("id");
-                String imageName = row.getString("image_name").replaceAll("\\s", "");;
-                String glowName = row.getString("glow_name").replaceAll("\\s", "");;
-                String planetType = row.getString("planet_type").replaceAll("\\s", "");;
+                String imageName = row.getString("image_name").replaceAll("\\s", "");
+                String glowName = row.getString("glow_name").replaceAll("\\s", "");
+                String cloudName = row.getString("cloud_name").replaceAll("\\s", "");
+                String planetType = row.getString("planet_type").replaceAll("\\s", "");
                 String typeName = row.getString("type_name");
-                String descId = row.getString("desc").replaceAll("\\s", "");;
+                String descId = row.getString("desc").replaceAll("\\s", "");
 
                 List<String> conditionsToAdd = new ArrayList<>();
 
@@ -41,6 +40,7 @@ public class Importer {
                         conditionsToAdd,
                         imageName,
                         glowName,
+                        cloudName,
                         planetType,
                         typeName,
                         descId);
@@ -52,5 +52,14 @@ public class Importer {
         }
 
        return dataMap;
+    }
+
+
+    private static boolean isNumber(String s) {
+        if (s.isEmpty()) {
+            return false;
+        }
+        char ch = s.charAt(0);
+        return ((ch >= '0') && (ch <= '9'));
     }
 }

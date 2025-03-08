@@ -9,8 +9,12 @@
     "modPlugin":"kaleidoscope.plugins.ModPlugin",
     "dependencies": [
         {
+            "id": "lw_lazylib",
+            "name": "LazyLib",
+        },
+        {
             "id": "lunalib",
             "name": "LunaLib",
-        }
-    ],
+        },
+    ]
 }
