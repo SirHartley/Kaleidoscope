@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.PlanetSpecAPI;
 import com.fs.starfarer.loading.specs.PlanetSpec;
+import kaleidoscope.plugins.PlanetTextureApplicator;
 import org.lazywizard.lazylib.MathUtils;
 
 import java.awt.*;
@@ -54,7 +55,9 @@ public class ImageDataEntry {
             obfSpec.cloudTexture = cloudName;
         }
 
-        for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) planet.getMarket().addCondition(s);
+        for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) {
+            PlanetTextureApplicator.addResourceCondition(planet, s);
+        }
 
         obfSpec.pitch = MathUtils.getRandomNumberInRange(-15f, 15f);
 

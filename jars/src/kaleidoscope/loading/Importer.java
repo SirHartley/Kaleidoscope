@@ -1,6 +1,7 @@
 package kaleidoscope.loading;
 
 import com.fs.starfarer.api.Global;
+import kaleidoscope.ids.Ids;
 import kaleidoscope.plugins.ModPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ public class Importer {
         List<ImageDataEntry> dataMap = new ArrayList<>();
 
         try {
-            JSONArray config = Global.getSettings().getMergedSpreadsheetDataForMod("id", ModPlugin.CSV_PATH, ModPlugin.MOD_ID);
+            JSONArray config = Global.getSettings().getMergedSpreadsheetDataForMod("id", Ids.CSV_PATH, Ids.MOD_ID);
             for (int i = 0; i < config.length(); i++) {
 
                 JSONObject row = config.getJSONObject(i);

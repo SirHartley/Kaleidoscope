@@ -7,7 +7,7 @@ import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.PlanetSpecAPI;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
-import com.fs.starfarer.api.util.WeightedRandomPicker;
+import com.fs.starfarer.api.impl.campaign.ids.Conditions;
 import kaleidoscope.ids.Ids;
 import kaleidoscope.loading.ImageDataEntry;
 import kaleidoscope.loading.Importer;
@@ -20,8 +20,7 @@ import java.util.List;
 public class ModPlugin extends BaseModPlugin {
     public static Logger log = Global.getLogger(ModPlugin.class);
 
-    public static final String CSV_PATH = "data/config/planet_texture_data.csv";
-    public static final String MOD_ID = "kaleidoscope";
+
 
     public static void log(String Text) {
         if (Global.getSettings().isDevMode()) Global.getLogger(ModPlugin.class).info(Text);
@@ -35,6 +34,17 @@ public class ModPlugin extends BaseModPlugin {
         if (!memory.getBoolean(Ids.KEY_SETUP_COMPLETE)){
             PlanetTextureApplicator applicator = new PlanetTextureApplicator();
             applicator.run();
+        }
+
+        if (!memory.getBoolean(Ids.KEY_1_0_B_FIX)){
+            for (LocationAPI loc : Global.getSector().getAllLocations()){
+                for (PlanetAPI p : loc.getPlanets()){
+                    if (p.getSpec().getTexture().contains("liquidmetal01")) {
+                        PlanetTextureApplicator.addResourceCondition(p, Conditions.ORE_ULTRARICH);
+                        PlanetTextureApplicator.addResourceCondition(p, Conditions.RARE_ORE_ULTRARICH);
+                    }
+                }
+            }
         }
 
         if (Global.getSettings().isDevMode()){
