@@ -19,10 +19,11 @@ public class ImageDataEntry {
     public String targetPlanetType;
     public String typeName;
     public String typeDesc;
+    public boolean reverseGlow;
 
     public int tally = 0;
 
-    public ImageDataEntry(int id, List<String> conditionsToAdd, String imageName, String glowName, String cloudName, String targetPlanetType, String typename, String typeDesc) {
+    public ImageDataEntry(int id, List<String> conditionsToAdd, String imageName, String glowName, String cloudName, boolean reverseGlow, String targetPlanetType, String typename, String typeDesc) {
         this.id = id;
         this.conditionsToAdd = conditionsToAdd;
         this.imageName = imageName;
@@ -31,6 +32,7 @@ public class ImageDataEntry {
         this.targetPlanetType = targetPlanetType;
         this.typeName = typename;
         this.typeDesc = typeDesc;
+        this.reverseGlow = reverseGlow;
     }
 
     public boolean matches(PlanetAPI planet){
@@ -45,7 +47,11 @@ public class ImageDataEntry {
         PlanetSpec obfSpec = (PlanetSpec) spec;
 
         obfSpec.texture = imageName;
-        if (glowName != null && !glowName.isEmpty()) obfSpec.glowTexture = glowName;
+        if (glowName != null && !glowName.isEmpty()) {
+            obfSpec.setUseReverseLightForGlow(reverseGlow);
+            obfSpec.glowTexture = glowName;
+        }
+
         if (typeName != null && !typeName.isEmpty()) obfSpec.name = typeName;
         if (typeDesc != null && !typeDesc.isEmpty()) obfSpec.descriptionId = typeDesc;
 

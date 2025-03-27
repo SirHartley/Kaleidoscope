@@ -20,8 +20,6 @@ import java.util.List;
 public class ModPlugin extends BaseModPlugin {
     public static Logger log = Global.getLogger(ModPlugin.class);
 
-
-
     public static void log(String Text) {
         if (Global.getSettings().isDevMode()) Global.getLogger(ModPlugin.class).info(Text);
     }

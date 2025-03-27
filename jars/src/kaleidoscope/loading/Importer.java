@@ -28,6 +28,9 @@ public class Importer {
                 String planetType = row.getString("planet_type").replaceAll("\\s", "");
                 String typeName = row.getString("type_name");
                 String descId = row.getString("desc").replaceAll("\\s", "");
+                boolean reverseGlow = !row.getString("reverse_glow").isEmpty() && row.getBoolean("reverse_glow");
+
+                ModPlugin.log("reverse glow " + glowName + " is " + reverseGlow);
 
                 List<String> conditionsToAdd = new ArrayList<>();
 
@@ -42,6 +45,7 @@ public class Importer {
                         imageName,
                         glowName,
                         cloudName,
+                        reverseGlow,
                         planetType,
                         typeName,
                         descId);

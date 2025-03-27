@@ -2,9 +2,9 @@
     "id": "kaleidoscope",
     "name": "Kaleidoscope",
     "author": "SirHartley & Pixel Rice Bowl",
-    "version": "1.0.b",
+    "version": "1.0.c",
     "description": "Adds visual variety to the planets of the sector.",
-    "gameVersion": "0.97a",
+    "gameVersion": "0.98a",
     "jars":["jars/kaleidoscope.jar"],
     "modPlugin":"kaleidoscope.plugins.ModPlugin",
     "dependencies": [

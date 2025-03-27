@@ -8,6 +8,14 @@ None
 None
 
 --------------------------- Changelog -----------------------------
+1.0.c
+Added - Terran Variant: Glowing Terran
+Added - Toxic Variant: Default Variant 2
+Fixed - Glow layers now respect light source
+Fixed - Demand Indicators is no longer compiled into the source of Kaleidoscope
+Removed - Water Variant: Reef World (pending rework)
+Removed - Jungle Variant: Default Variant 1 (pending rework)
+
 1.0.b
 Fixed - Metallic Planets no longer have duplicate resource conditions
 
