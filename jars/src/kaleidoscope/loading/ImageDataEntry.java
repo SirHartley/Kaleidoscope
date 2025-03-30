@@ -56,7 +56,7 @@ public class ImageDataEntry {
         if (typeDesc != null && !typeDesc.isEmpty()) obfSpec.descriptionId = typeDesc;
 
         if (cloudName != null && !cloudName.isEmpty()) {
-            if (obfSpec.cloudAlpha < 0.3f) obfSpec.cloudAlpha = 0.7f;
+            if (obfSpec.cloudAlpha < 0.3f) obfSpec.cloudAlpha = 0.4f;
             if (obfSpec.cloudColor == null) obfSpec.cloudColor = new Color(255,255,255,255);
             obfSpec.cloudTexture = cloudName;
         }
