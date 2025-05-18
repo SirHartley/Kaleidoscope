@@ -8,6 +8,9 @@ None
 None
 
 --------------------------- Changelog -----------------------------
+1.0.e
+Fixed - An issue where gas giants would become invisible when updating the mod
+
 1.0.d
 Added - Two new gas giant variants
 Added - One new ice giant variant
