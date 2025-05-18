@@ -38,16 +38,16 @@ id,image_name,glow_name,cloud_name,planet_type,reverse_glow,force_condition,type
 37,graphics/kaleidoscope/planets/frozen03.jpg,,,frozen,,,,
 38,graphics/kaleidoscope/planets/frozen04.jpg,,,frozen,,,,
 39,graphics/kaleidoscope/planets/frozen05.jpg,,,frozen,,,,
-40,graphics/kaleidoscope/planets/gas02.jpg,,,gas_giant,,,,
-41,graphics/kaleidoscope/planets/gas03.jpg,,,gas_giant,,,,
-42,graphics/kaleidoscope/planets/gas04.jpg,,,gas_giant,,,,
-43,graphics/kaleidoscope/planets/gas05.jpg,,,gas_giant,,,,
-44,graphics/kaleidoscope/planets/gas06.jpg,,,gas_giant,,,,
-45,graphics/kaleidoscope/planets/gas07.jpg,,,gas_giant,,,,
-46,graphics/kaleidoscope/planets/gas08.jpg,,,gas_giant,,,,
-47,graphics/kaleidoscope/planets/gas_ice01.jpg,,,ice_giant,,,,
-48,graphics/kaleidoscope/planets/gas_ice02.jpg,,,ice_giant,,,,
-49,graphics/kaleidoscope/planets/gas_ice03.jpg,,,gas_giant,,,,
+40,graphics/kaleidoscope/planets/gas02.png,,,gas_giant,,,,
+41,graphics/kaleidoscope/planets/gas03.png,,,gas_giant,,,,
+42,graphics/kaleidoscope/planets/gas04.png,,,gas_giant,,,,
+43,graphics/kaleidoscope/planets/gas05.png,,,gas_giant,,,,
+44,graphics/kaleidoscope/planets/gas06.png,,,gas_giant,,,,
+45,graphics/kaleidoscope/planets/gas07.png,,,gas_giant,,,,
+46,graphics/kaleidoscope/planets/gas08.png,,,gas_giant,,,,
+47,graphics/kaleidoscope/planets/gas_ice01.png,,,ice_giant,,,,
+48,graphics/kaleidoscope/planets/gas_ice02.png,,,ice_giant,,,,
+49,graphics/kaleidoscope/planets/gas_ice03.png,,,gas_giant,,,,
 50,graphics/kaleidoscope/planets/irradiated01.jpg,,,irradiated,,,,
 51,graphics/kaleidoscope/planets/jungle01.jpg,,,DO_NOT_ASSIGN,,,,
 52,graphics/kaleidoscope/planets/jungle_red01.jpg,,,jungle,,,Crimson Jungle,kaleidoscope_red_jungle
@@ -75,5 +75,9 @@ id,image_name,glow_name,cloud_name,planet_type,reverse_glow,force_condition,type
 74,graphics/kaleidoscope/planets/water01.jpg,,,water,,,,
 75,graphics/kaleidoscope/planets/water02.jpg,,,water,,,Pangean Water,kaleidoscope_pangean_water
 76,graphics/kaleidoscope/planets/shroom02.jpg,graphics/kaleidoscope/planets/shroom02_glow.png,,jungle,true,inimical_biosphere,Fungal,kaleidoscope_fungal
-77,graphics/kaleidoscope/planets/terran07.jpg,graphics/kaleidoscope/planets/terran07_glow.jpg,,terran,true,,Glowing Terran,kaleidoscope_glowing_terran
+77,graphics/kaleidoscope/planets/terran07.jpg,graphics/kaleidoscope/planets/terran07_glow.png,,terran,true,,Glowing Terran,kaleidoscope_glowing_terran
 78,graphics/kaleidoscope/planets/toxic02.jpg,,graphics/kaleidoscope/planets/toxic_atmosphere.png,toxic,,,,
+79,graphics/kaleidoscope/planets/gas_ice04.png,,,ice_giant,,,,
+80,graphics/kaleidoscope/planets/gas09.png,,,gas_giant,,,,
+81,graphics/kaleidoscope/planets/gas10.png,,,gas_giant,,,,
+82,graphics/kaleidoscope/planets/frozen05.jpg,,,frozen,,,,

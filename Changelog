@@ -8,6 +8,14 @@ None
 None
 
 --------------------------- Changelog -----------------------------
+1.0.d
+Added - Two new gas giant variants
+Added - One new ice giant variant
+Added - One new frozen planet variant
+Adjusted - Gas giant textures are no longer blurry
+Adjusted - Glowing Terran glow texture is no longer pixelated
+Fixed - No longer removes resources from metallic planets on load
+
 1.0.c
 Added - Terran Variant: Glowing Terran
 Added - Toxic Variant: Default Variant 2

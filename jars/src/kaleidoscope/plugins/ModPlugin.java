@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModPlugin extends BaseModPlugin {
+
+    public static final boolean dev = false;
     public static Logger log = Global.getLogger(ModPlugin.class);
 
     public static void log(String Text) {
@@ -34,18 +36,7 @@ public class ModPlugin extends BaseModPlugin {
             applicator.run();
         }
 
-        if (!memory.getBoolean(Ids.KEY_1_0_B_FIX)){
-            for (LocationAPI loc : Global.getSector().getAllLocations()){
-                for (PlanetAPI p : loc.getPlanets()){
-                    if (p.getSpec().getTexture().contains("liquidmetal01")) {
-                        PlanetTextureApplicator.addResourceCondition(p, Conditions.ORE_ULTRARICH);
-                        PlanetTextureApplicator.addResourceCondition(p, Conditions.RARE_ORE_ULTRARICH);
-                    }
-                }
-            }
-        }
-
-        if (Global.getSettings().isDevMode()){
+        if (Global.getSettings().isDevMode() && dev){
             spawnSuperSystem();
         }
     }
@@ -122,7 +113,9 @@ public class ModPlugin extends BaseModPlugin {
                 copySpecData(newPlanet.getSpec(), p.getSpec());
                 newPlanet.applySpecChanges();
 
-                for (ImageDataEntry entry : entries) if (entry.imageName.equals(p.getSpec().getTexture())) entry.applyToPlanet(newPlanet);
+                for (ImageDataEntry entry : entries) if (entry.imageName.equals(p.getSpec().getTexture())) {
+                    entry.applyToPlanet(newPlanet);
+                }
 
                 //prepare new planet for player interactions
                 newPlanet.getMemoryWithoutUpdate().set("$isSurveyed", true);

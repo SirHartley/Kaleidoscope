@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.PlanetSpecAPI;
 import com.fs.starfarer.loading.specs.PlanetSpec;
+import kaleidoscope.plugins.ModPlugin;
 import kaleidoscope.plugins.PlanetTextureApplicator;
 import org.lazywizard.lazylib.MathUtils;
 
@@ -67,7 +68,7 @@ public class ImageDataEntry {
 
         obfSpec.pitch = MathUtils.getRandomNumberInRange(-15f, 15f);
 
-        if (Global.getSettings().isDevMode()) obfSpec.name = id + " - " + obfSpec.name + " - t/p: " + obfSpec.tilt + "/" + obfSpec.pitch + " cloud: " + obfSpec.cloudTexture + " alpha / col" + obfSpec.cloudAlpha + " / " + obfSpec.cloudColor;
+        if (Global.getSettings().isDevMode() && ModPlugin.dev) obfSpec.name = id + " - " + obfSpec.name + " - t/p: " + obfSpec.tilt + "/" + obfSpec.pitch + " cloud: " + obfSpec.cloudTexture + " alpha / col" + obfSpec.cloudAlpha + " / " + obfSpec.cloudColor;
 
         planet.applySpecChanges();
     }
