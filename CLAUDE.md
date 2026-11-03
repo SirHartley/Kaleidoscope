@@ -14,7 +14,7 @@ When the user asks for a plan, or to check something as a possible change, post 
 
 1. Read the current remote `CLAUDE.md` in full at the start of each new task. Within the same task, reuse the version already read unless the instructions change. Read new or changed instruction files before following them.
 2. Use the `starsector-knowledge` skill before answering or changing anything related to Starsector. It covers one exact game version. Do not rely on memory.
-   - Load the `house-style` skill for every task. Its personal rules (answers, vocabulary, comments, commits, punctuation) take precedence over older wording in this repository.
+   - Load the `house-style` skill for every task. Its personal rules (answers, vocabulary, comments, commits, punctuation) and its "Changelog entries" section take precedence over older wording in this repository.
 3. If the skill is incomplete, inspect the read-only jars under `lib/` (game API and internals, LazyLib). Extract them to a temporary directory, never into the repository.
 4. Select the required guides using [Which guide to read](#which-guide-to-read). Apply every matching row, including for reviews and fixes to existing behavior.
 
@@ -26,7 +26,7 @@ After reading this file, use the task to choose the next document. Read the rele
 |---|---|
 | Locate code, trace a feature, change an owner or lifecycle | [ARCHITECTURE.md](docs/ARCHITECTURE.md) before tracing code; follow its owner links. |
 | Add, change, retire or remove a texture variant or its CSV row | [ARCHITECTURE.md](docs/ARCHITECTURE.md#texture-table) and [save data](docs/ARCHITECTURE.md#save-data). |
-| Write or revise player-facing text (planet type names, descriptions, changelog, mod description) | The house-style `player-text.md`; [CHANGELOG.md](docs/CHANGELOG.md#wording) for changelog wording. Descriptions live in `data/strings/descriptions.csv`, type names in `planet_texture_data.csv`. |
+| Write or revise player-facing text (planet type names, descriptions, changelog, mod description) | The house-style `player-text.md`; for changelog lines the house-style "Changelog entries" section and [CHANGELOG.md](docs/CHANGELOG.md#wording). Descriptions live in `data/strings/descriptions.csv`, type names in `planet_texture_data.csv`. |
 | Edit a guide or add documentation | [Documentation upkeep](#documentation-upkeep), the owning guide and its inbound links. |
 | Change the build, rebuild the release jar, or prepare a release | [RELEASE.md](docs/RELEASE.md) |
 | Any implementation task | [CHANGELOG.md](docs/CHANGELOG.md): add or amend the task's entries in the current unreleased section before merge. |
