@@ -8,6 +8,10 @@ None
 None
 
 --------------------------- Changelog -----------------------------
+1.0.f - UNRELEASED
+Fixed - Variants now apply to all frozen, barren and desert planets (new game)
+Fixed - Fungal planets now properly have Inimical Biosphere (new game)
+
 1.0.e
 Fixed - An issue where gas giants would become invisible when updating the mod
 
