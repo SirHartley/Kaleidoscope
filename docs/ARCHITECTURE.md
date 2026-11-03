@@ -16,7 +16,7 @@ Technical routing for the current implementation, checked against game `0.98a-RC
 | Planet invisible or black after an update | Texture not preloaded: `ModPlugin.onApplicationLoad` -> `Importer.loadImageData`; [save data](#save-data) |
 | Crash at startup naming a texture | `ModPlugin.onApplicationLoad` rethrows the `loadTexture` `IOException`; a CSV path points to a missing file |
 | Wrong name or description on a planet | `planet_texture_data.csv` `type_name` / `desc` -> `ImageDataEntry.applyToPlanet` -> `data/strings/descriptions.csv` |
-| Forced resource condition missing or doubled | `force_condition` -> `ImageDataEntry.applyToPlanet` -> `PlanetTextureApplicator.addResourceCondition` |
+| Forced resource condition missing or doubled | `force_condition` -> `ImageDataEntry.applyToPlanet` -> `PlanetTextureApplicator.addForcedCondition` |
 | Glow lit on the wrong side | `reverse_glow` -> `PlanetSpecAPI.setUseReverseLightForGlow` |
 | Variants not applied to an existing save | `$KaleidoscopeSetupComplete` -> `ModPlugin.onGameLoad` |
 
@@ -73,7 +73,7 @@ Use `rg --files jars/src/kaleidoscope` for the complete inventory.
 | File | Owner / connection |
 |---|---|
 | `plugins/ModPlugin.java` | Lifecycle hooks above, the `log` helper (dev mode only), and the dev showcase `spawnSuperSystem` |
-| `plugins/PlanetTextureApplicator.java` | The assignment pass: location filter, one pick per planet, the setup key, and `addResourceCondition` |
+| `plugins/PlanetTextureApplicator.java` | The assignment pass: location filter, one pick per planet, the setup key, and `addForcedCondition` |
 | `loading/Importer.java` | Reads the table into `ImageDataEntry` objects; logs and returns what it has on an `IOException` or `JSONException` |
 | `loading/ImageDataEntry.java` | One row: `matches` (planet type test) and `applyToPlanet` (spec changes, forced conditions, random pitch, `applySpecChanges`) |
 | `ids/Ids.java` | Memory keys, the table path and the mod id |
@@ -94,7 +94,7 @@ Use `rg --files jars/src/kaleidoscope` for the complete inventory.
 
 ### Resource conditions
 
-`addResourceCondition` handles a condition id starting with `ore`, `rare`, `organics`, `volatiles` or `farmland`: it removes every condition of that group from the planet's market, then adds the one given. A condition with any other prefix is skipped without a log line, so `inimical_biosphere` in `force_condition` is never added. A condition the market already has is not touched.
+`addForcedCondition` adds the condition to the planet's market. For an id starting with `ore`, `rare`, `organics`, `volatiles` or `farmland` it first removes every condition of that group, so a planet keeps one resource level per group. Any other id (`inimical_biosphere`) is added as is. A condition the market already has is not touched (`applyToPlanet` checks `hasCondition`). `PlanetConditionMarket.addCondition` applies the condition's plugin at once, so the hazard rating includes it without a `reapplyConditions` call.
 
 ### Save data
 

@@ -56,7 +56,7 @@ public class PlanetTextureApplicator {
         Global.getSector().getMemoryWithoutUpdate().set(Ids.KEY_SETUP_COMPLETE, true);
     }
     
-    public static void addResourceCondition(PlanetAPI planet, String conditionToAdd){
+    public static void addForcedCondition(PlanetAPI planet, String conditionToAdd){
         HashMap<String, List<String>> resourceConditionMap = new HashMap<>();
 
         resourceConditionMap.put("ore", new ArrayList<>(Arrays.asList(Conditions.ORE_SPARSE, Conditions.ORE_MODERATE, Conditions.ORE_ABUNDANT, Conditions.ORE_RICH, Conditions.ORE_ULTRARICH)));
@@ -65,13 +65,13 @@ public class PlanetTextureApplicator {
         resourceConditionMap.put("volatiles", new ArrayList<>(Arrays.asList(Conditions.VOLATILES_TRACE, Conditions.VOLATILES_DIFFUSE, Conditions.VOLATILES_ABUNDANT, Conditions.VOLATILES_PLENTIFUL)));
         resourceConditionMap.put("farmland", new ArrayList<>(Arrays.asList(Conditions.FARMLAND_POOR, Conditions.FARMLAND_ADEQUATE, Conditions.FARMLAND_RICH, Conditions.FARMLAND_BOUNTIFUL)));
 
+        MarketAPI m = planet.getMarket();
         for (Map.Entry<String, List<String>> e : resourceConditionMap.entrySet()){
             if (conditionToAdd.startsWith(e.getKey())) {
-                MarketAPI m = planet.getMarket();
                 for (String s : e.getValue()) m.removeCondition(s);
-                m.addCondition(conditionToAdd);
                 break;
             }
         }
+        m.addCondition(conditionToAdd);
     }
 }

@@ -60,7 +60,7 @@ public class ImageDataEntry {
         }
 
         for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) {
-            PlanetTextureApplicator.addResourceCondition(planet, s);
+            PlanetTextureApplicator.addForcedCondition(planet, s);
         }
 
         obfSpec.pitch = MathUtils.getRandomNumberInRange(-15f, 15f);
