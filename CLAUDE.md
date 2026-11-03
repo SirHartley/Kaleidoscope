@@ -63,7 +63,7 @@ After reading this file, use the task to choose the next document. Read the rele
 
 ### Branch cleanup
 
-Verify that a merged pull request's head branch is gone; the repository does not delete it automatically, so delete it after merge. Also remove a branch pushed without a pull request or whose pull request was closed without merging. If deletion returns HTTP 403, report the branch name and leave it in place.
+GitHub deletes a pull request's head branch after merge. Verify that the branch is gone. Remove it manually when it was pushed without a pull request, its pull request was closed without merging, or it was merged before the setting was on. If deletion returns HTTP 403, report the branch name and leave it in place.
 
 After merge, fast-forward the local task branch to the new `dev`.
 
