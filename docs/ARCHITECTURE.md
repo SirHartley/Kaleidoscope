@@ -90,7 +90,7 @@ Use `rg --files jars/src/kaleidoscope` for the complete inventory.
 
 ### Matching
 
-`ImageDataEntry.matches` compares `PlanetAPI.getTypeId()` with `planet_type`. When the type id ends in a digit it first cuts the last two characters. Vanilla's numbered types (`barren2`, `barren3`, `frozen1` to `frozen3`, `desert1` in `data/config/planets.json`) have a one character suffix, so they become `barre`, `froze` and `deser` and never match a row.
+`ImageDataEntry.matches` compares `PlanetAPI.getTypeId()` with `planet_type` after cutting any trailing digits, so vanilla's numbered types (`barren2`, `barren3`, `frozen1` to `frozen3`, `desert1` in `data/config/planets.json`) match the rows for `barren`, `frozen` and `desert`. Procgen picks the numbered types as often as the plain ones (`data/campaign/procgen/planet_gen_data.csv`).
 
 ### Resource conditions
 

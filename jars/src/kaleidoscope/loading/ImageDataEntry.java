@@ -37,10 +37,7 @@ public class ImageDataEntry {
     }
 
     public boolean matches(PlanetAPI planet){
-        String type = planet.getTypeId();
-        if (Character.isDigit(type.charAt(type.length()-1))) type = type.substring(0, type.length() - 2);
-
-        return type.equals(targetPlanetType);
+        return planet.getTypeId().replaceAll("\\d+$", "").equals(targetPlanetType);
     }
 
     public void applyToPlanet(PlanetAPI planet){
