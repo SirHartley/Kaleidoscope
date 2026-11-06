@@ -62,6 +62,7 @@ Whitespace is stripped from every column but `type_name`. Textures live in `grap
 | Stable value | Where it lives |
 |---|---|
 | `$KaleidoscopeSetupComplete` (`Ids.KEY_SETUP_COMPLETE`) | Sector memory, set after the one assignment pass |
+| `$Kaleidoscope_SuperSystemSpawned` (`Ids.KEY_SUPER_SYSTEM_SPAWNED`) | Sector memory, dev only: set after `spawnSuperSystem` runs so it runs once per save |
 | Texture, glow and cloud paths | Each changed planet's saved spec |
 | `type_name` | Each changed planet's saved spec name; renaming a row does not rename planets in existing saves |
 | `desc` ids (`kaleidoscope_*`) | Each changed planet's saved spec |
@@ -107,4 +108,4 @@ Use `rg --files jars/src/kaleidoscope` for the complete inventory.
 |---|---|
 | `Ids.KEY_1_0_B_FIX` | Unused key from 1.0.b |
 | `Importer.isNumber` | Unused |
-| `ModPlugin.spawnSuperSystem`, `ImageDataEntry.tally` | Dev only: run when dev mode is on and the constant `ModPlugin.dev` is `true` (it is `false`). Moves one planet per variant into Duzahk |
+| `ModPlugin.spawnSuperSystem`, `ImageDataEntry.tally` | Dev only: run when dev mode is on and the constant `ModPlugin.dev` is `true` (it is `false`). Moves one planet per variant into Duzahk, once per save (`$Kaleidoscope_SuperSystemSpawned`) |
