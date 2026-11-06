@@ -36,8 +36,9 @@ public class ModPlugin extends BaseModPlugin {
             applicator.run();
         }
 
-        if (Global.getSettings().isDevMode() && dev){
+        if (Global.getSettings().isDevMode() && dev && !memory.getBoolean(Ids.KEY_SUPER_SYSTEM_SPAWNED)){
             spawnSuperSystem();
+            memory.set(Ids.KEY_SUPER_SYSTEM_SPAWNED, true);
         }
     }
 
