@@ -1,6 +1,6 @@
 # Kaleidoscope
 
-Starsector mod (game `0.98a`) that gives planets in uninhabited systems new textures, names and descriptions, picked once per save from `data/config/planet_texture_data.csv`. Most of the mod is art; the Java code is a small loader and applicator.
+Starsector mod (game `0.98.5a`) that gives planets in uninhabited systems new textures, names and descriptions, picked once per save from `data/config/planet_texture_data.csv`. Most of the mod is art; the Java code is a small loader and applicator.
 
 ## Required workflow
 

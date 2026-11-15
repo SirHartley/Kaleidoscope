@@ -4,7 +4,7 @@
     "author": "SirHartley & Pixel Rice Bowl",
     "version": "1.0.e",
     "description": "Adds visual variety to the planets of the sector.",
-    "gameVersion": "0.98a",
+    "gameVersion": "0.98.5a-RC6",
     "jars":["jars/kaleidoscope.jar"],
     "modPlugin":"kaleidoscope.plugins.ModPlugin",
     "dependencies": [
