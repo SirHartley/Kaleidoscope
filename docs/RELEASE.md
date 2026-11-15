@@ -11,7 +11,7 @@ How Kaleidoscope is built, packaged and published. Nothing here runs unless a re
 | Version file | `kaleidoscope.version` | Online Version Checker file on `master` (forum thread `31738`), registered in `data/config/version/version_files.csv`; stamped at packaging, committed back after a release |
 | Release builder | `jars/src/kaleidoscope/tools/ReleaseBuild.java` | `build` and `package`, run with `java <file>` |
 | Builder checks | `jars/src/kaleidoscope/tools/ReleaseBuildChecks.java` | Headless checks of changelog parsing, stamping and file filtering |
-| Build libraries | `lib/` | Game jars from `0.98a-RC8` and `LazyLib.jar` (LazyLib 3.0.0), copied from Industrial.Evolution's `lib/` |
+| Build libraries | `lib/` | Game jars from `0.98.5a-RC6` and `LazyLib.jar` (LazyLib 3.0.0, copied from Industrial.Evolution's `lib/`) |
 | Release jar | `jars/release/kaleidoscope.jar` | Built by `build`, gitignored, runtime classes only; shipped as `jars/kaleidoscope.jar` |
 | Release workflow | `.github/workflows/release.yml` | Manual only: preview without a version, publish with one |
 

@@ -1,6 +1,6 @@
 # Architecture
 
-Technical routing for the current implementation, checked against game `0.98a-RC8`. Code paths below are relative to `jars/src/kaleidoscope/`; data paths are repository-relative. Search the named owner before adding another implementation.
+Technical routing for the current implementation, checked against game `0.98.5a-RC6`. Code paths below are relative to `jars/src/kaleidoscope/`; data paths are repository-relative. Search the named owner before adding another implementation.
 
 | Reference | Scope |
 |---|---|
