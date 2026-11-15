@@ -1,3 +1,5 @@
 # Project exclude paths
 /jars/production
 /jars/kaleidoscope.jar
+/out/
+/jars/release/

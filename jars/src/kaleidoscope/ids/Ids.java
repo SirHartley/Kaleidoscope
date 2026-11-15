@@ -5,4 +5,5 @@ public class Ids {
     public static final String CSV_PATH = "data/config/planet_texture_data.csv";
     public static final String MOD_ID = "kaleidoscope";
     public static final String KEY_1_0_B_FIX = "$Kaleidoscope_10b_fix";
+    public static final String KEY_SUPER_SYSTEM_SPAWNED = "$Kaleidoscope_SuperSystemSpawned";
 }

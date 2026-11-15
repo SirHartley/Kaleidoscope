@@ -37,10 +37,7 @@ public class ImageDataEntry {
     }
 
     public boolean matches(PlanetAPI planet){
-        String type = planet.getTypeId();
-        if (Character.isDigit(type.charAt(type.length()-1))) type = type.substring(0, type.length() - 2);
-
-        return type.equals(targetPlanetType);
+        return planet.getTypeId().replaceAll("\\d+$", "").equals(targetPlanetType);
     }
 
     public void applyToPlanet(PlanetAPI planet){
@@ -63,7 +60,7 @@ public class ImageDataEntry {
         }
 
         for (String s : conditionsToAdd) if (!planet.getMarket().hasCondition(s)) {
-            PlanetTextureApplicator.addResourceCondition(planet, s);
+            PlanetTextureApplicator.addForcedCondition(planet, s);
         }
 
         obfSpec.pitch = MathUtils.getRandomNumberInRange(-15f, 15f);
